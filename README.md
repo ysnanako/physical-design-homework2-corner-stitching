@@ -1,7 +1,7 @@
-# physical-design-homework2-corner-stitching
+# physical-design-homework2-macro-placement
 
-![GitHub repo size](https://img.shields.io/github/repo-size/ysnanako/physical-design-homework2-corner-stitching)
-![GitHub last commit](https://img.shields.io/github/last-commit/ysnanako/physical-design-homework2-corner-stitching)
+![GitHub repo size](https://img.shields.io/github/repo-size/ysnanako/physical-design-homework2-macro-placement)
+![GitHub last commit](https://img.shields.io/github/last-commit/ysnanako/physical-design-homework2-macro-placement)
 
 This project is part of the **National Cheng Kung University (NCKU) - VLSI/CAD Group** course **"Physical Design for Nanometer IC"**, focusing on **macro placement using Corner Stitching (CS) and Genetic Algorithm (GA)**.
 
@@ -19,7 +19,7 @@ This project is part of the **National Cheng Kung University (NCKU) - VLSI/CAD G
 
 ## 📝 Project Overview
 
-This project implements **macro placement** using **Corner Stitching (CS) as the packing-based foundation** while utilizing **Genetic Algorithm (GA) to perturb insertion order**. The goal is to **minimize Short Wire Length (SWL) and Half-Perimeter Wire Length (HPWL)** while ensuring legal placement.
+This project implements **macro placement** using **Corner Stitching (CS) as the packing-based foundation** while utilizing **Genetic Algorithm (GA) to perturb insertion order**. The goal is to **Half-Perimeter Wire Length (HPWL)** while ensuring legal placement.
 
 ### **Key Features:**
 1. **Parsing Bookshelf format `.aux` files** and extracting circuit information.

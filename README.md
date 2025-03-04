@@ -27,7 +27,7 @@ This project implements **macro placement** using **Corner Stitching** and **Gen
    - `.scl` - Row placement information
 2. **Using Genetic Algorithm (GA) for macro placement optimization**
 3. **Corner Stitching (CS) data structure for legal placement**
-4. **Generating ****\`\`**** output files for visualization**
+4. **Generating `.pl_out` output files for visualization**
 5. **Checking legality and calculating HPWL** using `tester.py`
 
 ## 📄 Input Format
@@ -46,7 +46,7 @@ RowBasedPlacement : circuit.nodes circuit.nets circuit.pl circuit.scl
 
 ## 📄 Output Format
 After execution, the program generates **macro placement results**:
-- **`.plout`** - Output placement file for macros.
+- **`.pl_out`** - Output placement file for macros.
 - **`.dat` files** - Stores parsed circuit information.
 - **`.plt` files** - Gnuplot scripts for visualization.
 
@@ -93,7 +93,7 @@ This project implements **macro placement** using **Corner Stitching (CS) as the
   5. **Iteration** - The process continues until convergence.
 
 ### **4. Output Generation**
-- The final macro placement is stored in **`.plout`**.
+- The final macro placement is stored in **`.pl_out`**.
 - The legalized placement result is stored in **`.legal.pl`**.
 - Visualization data is exported as **`.plt`** files for `gnuplot`.
 
@@ -116,33 +116,27 @@ gnuplot adaptec1/adaptec1.plt
 
 Below are the generated plots from the `gnuplot` output:
 
-**adaptec1 pre-placed (matlab)**
-![fixed](https://github.com/user-attachments/assets/a251b908-bfb2-4dae-b5aa-8cb14aca7e85)
+**adaptec1 pre-placed (matlab)**  
+![fixed](https://github.com/user-attachments/assets/a251b908-bfb2-4dae-b5aa-8cb14aca7e85)  
+**adaptec1 result (matlab)**  
+![GA4](https://github.com/user-attachments/assets/34f0f459-003d-41fd-adc2-b7fe0d21ff26)  
+**adaptec1 result (gnuplt)**  
+![GA3](https://github.com/user-attachments/assets/356a0f04-9937-4e2f-b2de-4e30a069d21a)  
 
+## ✅ Validation & HPWL Calculation
 
-**adaptec1 result (matlab)**
-![GA4](https://github.com/user-attachments/assets/34f0f459-003d-41fd-adc2-b7fe0d21ff26)
+### **Legality Check & HPWL Calculation**
 
-
-**adaptec1 result (gnuplt)**
-![GA3](https://github.com/user-attachments/assets/356a0f04-9937-4e2f-b2de-4e30a069d21a)
-
-
-
-## 🔍 Validation & HPWL Calculation
-
-### **Legality & SWL Check**
-
-The checker verifies that:
-
-- **Macros do not overlap** in the final placement.
-- **Legal placements are preserved**.
-- **Short Wire Length (SWL) is minimized**, which is another placement quality metric.
-
-Run the legality and SWL checker using:
+- Ensures **macros do not overlap**.
+- Computes total wirelength to evaluate placement quality.
 
 ```bash
 python3 tester.py --case adaptec1
+len node_info 543
+adjust net size = 693
+node_net_num_max 81
+node_area_max = 3444336
+Macro HPWL: 1051995.0
 ```
 
 If the placement has overlaps or violates any constraints, the script will report errors.
@@ -160,4 +154,3 @@ If the placement has overlaps or violates any constraints, the script will repor
 - 📧 Email: [m16131056@gs.ncku.edu.tw](mailto\:m16131056@gs.ncku.edu.tw)
 - 🌎 University: [National Cheng Kung University (NCKU)](https://www.ncku.edu.tw)
 - 📖 Course: Physical Design for Nanometer IC, Fall 2024
-- 

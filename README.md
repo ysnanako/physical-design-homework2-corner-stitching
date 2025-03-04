@@ -1,6 +1,7 @@
 # physical-design-homework2-corner-stitching
 
-&#x20;
+![GitHub repo size](https://img.shields.io/github/repo-size/ysnanako/physical-design-homework2-corner-stitching)
+![GitHub last commit](https://img.shields.io/github/last-commit/ysnanako/physical-design-homework2-corner-stitching)
 
 This project is part of the **National Cheng Kung University (NCKU) - VLSI/CAD Group** course **"Physical Design for Nanometer IC"**, focusing on **macro placement using Corner Stitching and Genetic Algorithm (GA)**.
 
@@ -18,17 +19,14 @@ This project is part of the **National Cheng Kung University (NCKU) - VLSI/CAD G
 
 ## 📝 Project Overview
 
-This project implements **macro placement** using **Corner Stitching** and **Genetic Algorithm (GA)** to optimize placement while reducing **Half-Perimeter Wire Length (HPWL)**. The workflow includes:
+This project implements **macro placement** using **Corner Stitching (CS) as the packing-based foundation** while utilizing **Genetic Algorithm (GA) to perturb insertion order**. The goal is to **minimize Short Wire Length (SWL) and Half-Perimeter Wire Length (HPWL)** while ensuring legal placement.
 
-1. **Parsing Bookshelf format ****\`\`**** files** and extracting:
-   - `.nodes` - Circuit components and their dimensions
-   - `.nets` - Netlist information
-   - `.pl` - Placement information
-   - `.scl` - Row placement information
-2. **Using Genetic Algorithm (GA) for macro placement optimization**
-3. **Corner Stitching (CS) data structure for legal placement**
-4. **Generating `.pl_out` output files for visualization**
-5. **Checking legality and calculating HPWL** using `tester.py`
+### **Key Features:**
+1. **Parsing Bookshelf format `.aux` files** and extracting circuit information.
+2. **Using Corner Stitching (CS) for efficient whitespace management and placement legality checking.**
+3. **Applying Genetic Algorithm (GA) to optimize macro insertion order into CS structure.**
+4. **Generating `.pl_out` placement results and `.pl_out` for visualization.**
+5. **Checking legality and calculating HPWL** using `tester.py`. 
 
 ## 📄 Input Format
 
@@ -154,3 +152,158 @@ If the placement has overlaps or violates any constraints, the script will repor
 - 📧 Email: [m16131056@gs.ncku.edu.tw](mailto\:m16131056@gs.ncku.edu.tw)
 - 🌎 University: [National Cheng Kung University (NCKU)](https://www.ncku.edu.tw)
 - 📖 Course: Physical Design for Nanometer IC, Fall 2024
+
+# physical-design-homework2-corner-stitching
+
+This project is part of the **National Cheng Kung University (NCKU) - VLSI/CAD Group** course **"Physical Design for Nanometer IC"**, focusing on **macro placement using Corner Stitching and Genetic Algorithm (GA)**.
+
+## 📖 Table of Contents
+- [Project Overview](#project-overview)
+- [Requirements](#requirements)
+- [Installation & Execution](#installation--execution)
+- [Input Format](#input-format)
+- [Output Format](#output-format)
+- [Project Structure](#project-structure)
+- [Parsing & Placement Flow](#parsing--placement-flow)
+- [Example Execution](#example-execution)
+- [Validation & SWL & HPWL Calculation](#validation--swl--hpwl-calculation)
+- [Contribution Guide](#contribution-guide)
+- [Contact Information](#contact-information)
+
+## 📝 Project Overview
+This project implements **macro placement** using **Corner Stitching (CS) as the packing-based foundation** while utilizing **Genetic Algorithm (GA) to perturb insertion order**. The goal is to **minimize Short Wire Length (SWL) and Half-Perimeter Wire Length (HPWL)** while ensuring legal placement.
+
+### **Key Features:**
+1. **Parsing Bookshelf format `.aux` files** and extracting circuit information.
+2. **Using Corner Stitching (CS) for efficient whitespace management and placement legality checking.**
+3. **Applying Genetic Algorithm (GA) to optimize macro insertion order into CS structure.**
+4. **Generating `.plout` placement results and validating with legality checks.**
+5. **Calculating SWL & HPWL to assess placement quality.**
+
+## 🖥️ Requirements
+This project is developed on **Linux (Ubuntu 20.04+)** and requires:
+- `g++ 6.3.0+`
+- `make`
+- `gnuplot`
+- `python3`
+- `iccad2013_check_legality` (legality checker)
+- `iccad2013_get_hpwl` (HPWL calculation)
+
+## 🚀 Installation & Execution
+Follow these steps to install and run the project:
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/ysnanako/physical-design-homework2-corner-stitching.git
+   cd physical-design-homework2-corner-stitching
+   ```
+
+2. **Compile the Code**
+   ```bash
+   make
+   ```
+
+3. **Run the Program**
+   ```bash
+   ./HW2_StudentID <circuit.aux>
+   ```
+
+4. **Check Legality & HPWL Calculation**
+   ```bash
+   ./iccad2013_check_legality superblue1.aux superblue1.legal.pl
+   ./iccad2013_get_hpwl superblue1.aux superblue1.legal.pl
+   ```
+
+5. **Validate with SWL Checker**
+   ```bash
+   python3 tester.py --case superblue1
+   ```
+
+6. **Visualize the Output**
+   ```bash
+   gnuplot <circuit>/<circuit.plt>
+   ```
+
+## 📂 Input Format
+This project follows the **Bookshelf** format and requires the following files:
+- **`.aux`** - Main index file pointing to `.nodes`, `.nets`, `.pl`, `.scl`, etc.
+- **`.nodes`** - Describes circuit components and their dimensions.
+- **`.nets`** - Defines netlist connectivity.
+- **`.pl`** - Specifies the placement coordinates.
+- **`.scl`** - Defines row placement structure.
+
+📄 **Example `.aux` File**
+```
+RowBasedPlacement : circuit.nodes circuit.nets circuit.pl circuit.scl
+```
+
+## 📄 Output Format
+After execution, the program generates **macro placement results**:
+- **`.plout`** - Output placement file for macros.
+- **`.legal.pl`** - Legalized placement file.
+- **`.plt`** - Gnuplot scripts for visualization.
+
+## 🏗️ Project Structure
+```
+📂 physical-design-homework2-corner-stitching/
+│── 📂 src/ # Source code directory (main.cpp, parser.cpp, datatype.cpp, and headers)
+│── 📂 obj/ # Compiled object files (ignored in Git)
+│── 📂 plt/ # Gnuplot scripts for visualization (ignored in Git, automatically generated)
+│── 📂 dat/ # Stores generated placement data (ignored in Git due to large size)
+│── 🚀 HW2_StudentID # Main executable file (ignored in Git)
+│── 📜 .gitignore # Specifies files to ignore in version control
+│── 📜 README.md # This file
+│── 🏗️ Makefile # Defines build instructions for compiling the project
+
+../📂 benchmarks/ # Directory containing Bookshelf benchmark test cases (located outside the repo)
+```
+
+## 🔹 **Parsing & Placement Flow**
+1. **Corner Stitching (CS) as Packing-based Foundation**
+   - CS is used for **macro placement and whitespace management**.
+   - Ensures **no overlaps** and **efficient whitespace usage**.
+2. **Genetic Algorithm (GA) for Macro Placement Optimization**
+   - GA perturbs **macro insertion order** into CS structure.
+   - Uses **Selection, Crossover, Mutation, and Evaluation** to optimize **Short Wire Length (SWL)**.
+3. **Short Wire Length (SWL) Calculation**
+   - SWL is computed **after placement** to measure connection efficiency.
+4. **Output Generation**
+   - `.plout` (Macro placement output).
+   - `.legal.pl` (Legalized placement output).
+   - `.plt` (Visualization scripts).
+5. **Validation & HPWL Calculation**
+   - Legality verified with `tester.py`.
+   - **HPWL & Total Wirelength** computed for quality assessment.
+
+## ✅ Validation & Wirelength & HPWL Calculation
+To validate correctness, **legality and quality metrics** are computed using:
+
+### **Legality & Wirelength Check**
+```bash
+python3 tester.py --case superblue1
+python3 tester.py --case superblue5
+python3 tester.py --case superblue19
+```
+- Ensures **macros do not overlap**.
+- Computes total wirelength to evaluate placement quality..
+
+### **HPWL Calculation**
+```bash
+./iccad2013_get_hpwl superblue1.aux superblue1.legal.pl
+./iccad2013_get_hpwl superblue5.aux superblue5.legal.pl
+./iccad2013_get_hpwl superblue19.aux superblue19.legal.pl
+```
+A **lower HPWL and SWL** indicate a **better placement solution**.
+
+## 🤝 Contribution Guide
+1. Fork this repository.
+2. Create a new branch (`git checkout -b feature-xyz`).
+3. Commit your changes (`git commit -m 'Add new feature'`).
+4. Push to the remote branch (`git push origin feature-xyz`).
+5. Submit a Pull Request.
+
+## 📬 Contact Information
+- 📧 Email: [m16131056@gs.ncku.edu.tw](mailto:m16131056@gs.ncku.edu.tw)
+- 🌎 University: [National Cheng Kung University (NCKU)](https://www.ncku.edu.tw)
+- 📖 Course: Physical Design for Nanometer IC, Fall 2024
+

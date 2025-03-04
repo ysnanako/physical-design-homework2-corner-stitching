@@ -26,7 +26,7 @@ This project implements **macro placement** using **Corner Stitching (CS) as the
 1. **Parsing Bookshelf format `.aux` files** and extracting circuit information.
 2. **Using Corner Stitching (CS) for efficient whitespace management and placement legality checking.**
 3. **Applying Genetic Algorithm (GA) to optimize macro insertion order into CS structure.**
-4. **Generating `.pl_out` placement results and `.pl_out` for visualization.**
+4. **Generating `.pl_out` placement results and `.plt` for visualization.**
 5. **Checking legality and calculating HPWL** using `tester.py`. 
 
 ## 📄 Input Format
@@ -62,7 +62,7 @@ After execution, the program generates **macro placement results**:
 │── 📜 README.md # This file
 │── 📜 .gitignore
 
-../📂 benchmarks/ # Directory containing Bookshelf benchmark test cases (located outside the repo)
+../📂 benchmarks/ # (located outside the repo)
 ```
 
 ## 🔹 **Parsing & Placement Flow**
@@ -70,10 +70,6 @@ This project implements **macro placement** using **Corner Stitching (CS) as the
 
 ### **1. Parsing Bookshelf Format**
 - The program first reads the **`.aux`** file, which references the **`.nodes`, `.nets`, `.pl`, `.scl`** files.
-- The **`.nodes`** file provides information about **macros and standard cells**.
-- The **`.nets`** file describes net connections between cells.
-- The **`.pl`** file provides initial placement data.
-- The **`.scl`** file contains row structure information for standard cell placement.
 
 ### **2. Corner Stitching as Packing-based Foundation**
 - **Corner Stitching (CS)** is used as the core **data structure for macro packing**.
@@ -93,13 +89,11 @@ This project implements **macro placement** using **Corner Stitching (CS) as the
 
 ### **4. Output Generation**
 - The final macro placement is stored in **`.pl_out`**.
-- The legalized placement result is stored in **`.legal.pl`**.
-- Visualization data is exported as **`.plt`** files for `gnuplot`.
+- Visualization data is exported as **`.plt`** and **`.dat`** files for `gnuplot`.
 
 ### **5. Validation & HPWL Calculation**
 - The legality of the placement is checked using **`tester.py`**.
-- **HPWL and short wirelength** are computed to evaluate placement quality.
-- If the result is not optimal, **GA parameters should be adjusted and re-run**.
+- **HPWL** is computed to evaluate placement quality.
 
 ## ⚡ **Example Execution**
 

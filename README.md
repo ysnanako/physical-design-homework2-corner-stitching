@@ -3,7 +3,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/ysnanako/physical-design-homework2-corner-stitching)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ysnanako/physical-design-homework2-corner-stitching)
 
-This project is part of the **National Cheng Kung University (NCKU) - VLSI/CAD Group** course **"Physical Design for Nanometer IC"**, focusing on **macro placement using Corner Stitching and Genetic Algorithm (GA)**.
+This project is part of the **National Cheng Kung University (NCKU) - VLSI/CAD Group** course **"Physical Design for Nanometer IC"**, focusing on **macro placement using Corner Stitching (CS) and Genetic Algorithm (GA)**.
 
 ## 📖 Table of Contents
 

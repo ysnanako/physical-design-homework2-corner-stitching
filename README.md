@@ -13,6 +13,7 @@ This project is part of the **National Cheng Kung University (NCKU) - VLSI/CAD G
 - [Project Structure](#project-structure)
 - [Parsing & Placement Flow](#parsing--placement-flow)
 - [Example Execution](#example-execution)
+- [Generated Plots](#generated-plots)
 - [Validation & HPWL Calculation](#validation--hpwl-calculation)
 - [Contribution Guide](#contribution-guide)
 - [Contact Information](#contact-information)
@@ -116,7 +117,7 @@ python3 tester.py --case adaptec1
 
 ## 🖼️ Generated Plots
 
-Below are the generated plots from the `gnuplot` output:
+Below are the generated plots from the `matlab` and `gnuplot` output:
 
 **adaptec1 pre-placed (matlab)**  
 ![fixed](https://github.com/user-attachments/assets/a251b908-bfb2-4dae-b5aa-8cb14aca7e85)  
